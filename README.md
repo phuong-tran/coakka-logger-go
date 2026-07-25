@@ -1,9 +1,16 @@
 # CoAkka Logger Go Connector
 
+[![CI](https://github.com/phuong-tran/coakka-logger-go/actions/workflows/go-ci.yml/badge.svg)](https://github.com/phuong-tran/coakka-logger-go/actions/workflows/go-ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/phuong-tran/coakka-logger-go.svg)](https://pkg.go.dev/github.com/phuong-tran/coakka-logger-go)
+[![Version](https://img.shields.io/badge/version-v1.2.5-blue)](https://github.com/phuong-tran/coakka-logger-go/tree/v1.2.5)
+[![Release](https://img.shields.io/badge/release-v1.2.5-informational)](https://github.com/phuong-tran/coakka-logger-go/releases/tag/v1.2.5)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+[![Funding](https://img.shields.io/badge/funding-Ko--fi-ff5f5f)](https://ko-fi.com/phuongnamtran)
+
 Go module:
 
 ```sh
-go get github.com/phuong-tran/coakka-logger-go@v1.2.4
+go get github.com/phuong-tran/coakka-logger-go@v1.2.5
 ```
 
 This package is the Go connector for the standalone CoAkka native logger core.
@@ -24,10 +31,60 @@ behavior, and platform library loading.
 
 Use these public repositories to orient first:
 
-- `https://github.com/phuong-tran/coakka-logger-go`
-- `https://github.com/phuong-tran/coakka-runtime-go`
-- `https://github.com/phuong-tran/coakka-publish`
-- `https://github.com/phuong-tran/coakka-samples`
+| Repository | Use it for | Link |
+| --- | --- | --- |
+| `coakka-samples` | Runnable examples and code you can inspect first. | https://github.com/phuong-tran/coakka-samples |
+| `coakka-publish` | Released packages, native archives, manifests, checksums, compatibility matrix, and release notes. | https://github.com/phuong-tran/coakka-publish |
+| `coakka-logger-go` | Public Go module source for this package. | https://github.com/phuong-tran/coakka-logger-go |
+| `coakka-runtime-go` | Public Go runtime module source. | https://github.com/phuong-tran/coakka-runtime-go |
+
+Run the matching sample:
+
+```sh
+git clone https://github.com/phuong-tran/coakka-samples.git
+cd coakka-samples
+bash run.sh logger go basic
+```
+
+Try the module without cloning any CoAkka repo:
+
+```sh
+mkdir coakka-logger-go-first-run
+cd coakka-logger-go-first-run
+go mod init coakka-logger-go-first-run
+go get github.com/phuong-tran/coakka-logger-go@v1.2.5
+```
+
+```go
+package main
+
+import (
+	"fmt"
+
+	logger "github.com/phuong-tran/coakka-logger-go"
+)
+
+func main() {
+	log, err := logger.Start(logger.LoggerSpec{
+		SystemName: "first-user-logger",
+		MinLevel:   logger.LevelInfo,
+	}, "")
+	if err != nil {
+		panic(err)
+	}
+	defer log.Close()
+
+	sequence, accepted, err := log.Info("first.user", `{"hello":"logger"}`)
+	if err != nil {
+		panic(err)
+	}
+	record, err := log.AwaitNext(1000)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(sequence, accepted, record.Category)
+}
+```
 
 It keeps the Go-facing API small:
 
@@ -38,7 +95,7 @@ It keeps the Go-facing API small:
 - read native info/config/stats snapshots
 
 The native core still owns queueing, pressure behavior, sink behavior, and
-lifecycle state. The Go connector only owns host-language ergonomics and dynamic
+lifecycle state. The Go connector owns host-language ergonomics and dynamic
 library loading.
 
 ## Verify
@@ -68,7 +125,7 @@ bash scripts/package-release.sh
 The package archive is written to:
 
 ```text
-logger/go/coakka-logger-go-1.2.4.tar.gz
+logger/go/coakka-logger-go-1.2.5.tar.gz
 ```
 
 Public Go module export:

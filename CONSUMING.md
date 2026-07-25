@@ -4,7 +4,7 @@ The current Go logger package is a public Go module plus embedded native
 logger libraries:
 
 ```sh
-go get github.com/phuong-tran/coakka-logger-go@v1.2.4
+go get github.com/phuong-tran/coakka-logger-go@v1.2.5
 ```
 
 Example consumer `go.mod`:
@@ -14,7 +14,7 @@ module my-logger-consumer
 
 go 1.22
 
-require github.com/phuong-tran/coakka-logger-go v1.2.4
+require github.com/phuong-tran/coakka-logger-go v1.2.5
 ```
 
 Example:

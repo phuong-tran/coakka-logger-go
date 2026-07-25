@@ -3,11 +3,15 @@
 //
 // Install the public module with:
 //
-//	go get github.com/phuong-tran/coakka-logger-go@v1.2.4
+//	go get github.com/phuong-tran/coakka-logger-go@v1.2.5
 //
 // CoAkka Logger gives a host application a small language-native logging API
 // while the native core owns queueing, pressure behavior, drain semantics, sink
 // behavior, and platform library loading.
+//
+// Use it when application code should emit records through a small Go API while
+// the native logger owns bounded queues, pressure accounting, and drain
+// behavior.
 //
 // Start one logger handle per process or component that owns a logging lane,
 // write records with category and message text, then close the handle during
