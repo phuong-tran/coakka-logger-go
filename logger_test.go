@@ -49,6 +49,15 @@ func TestPlatformID(t *testing.T) {
 	}
 }
 
+func TestLoggerResourceFileNames(t *testing.T) {
+	if got, want := loggerResourceFileNames("linux"), []string{"libcoakka_logger_core-1.2.1+f50756ebff0d.so"}; len(got) != len(want) || got[0] != want[0] {
+		t.Fatalf("loggerResourceFileNames(linux)=%v want %v", got, want)
+	}
+	if got, want := loggerResourceFileNames("windows"), []string{"libcoakka_logger_core-1.2.1+f50756ebff0d.dll"}; len(got) != len(want) || got[0] != want[0] {
+		t.Fatalf("loggerResourceFileNames(windows)=%v want %v", got, want)
+	}
+}
+
 func TestLoggerInfoAndManualDrain(t *testing.T) {
 	libPath := stagedLoggerLib(t)
 	if _, err := ResolveLoggerLibrary(libPath); err != nil {

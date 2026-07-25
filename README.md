@@ -3,7 +3,7 @@
 Go module:
 
 ```sh
-go get github.com/phuong-tran/coakka-logger-go@v1.2.2
+go get github.com/phuong-tran/coakka-logger-go@v1.2.3
 ```
 
 This package is the Go connector for the standalone CoAkka native logger core.
@@ -62,7 +62,7 @@ bash scripts/package-release.sh
 The package archive is written to:
 
 ```text
-logger/go/coakka-logger-go-1.2.2.tar.gz
+logger/go/coakka-logger-go-1.2.3.tar.gz
 ```
 
 Public Go module export:

@@ -64,11 +64,24 @@ func loggerResourceFileNames(goos string) []string {
 	versionedBase := "libcoakka_logger_core-" + LoggerNativePackageVersion
 	switch normalizeOS(goos) {
 	case "macos":
-		return []string{versionedBase + ".dylib", "libcoakka_logger_core.dylib", "libcoakka_logger_core.so"}
+		return []string{versionedBase + ".dylib"}
 	case "linux":
-		return []string{versionedBase + ".so", "libcoakka_logger_core.so"}
+		return []string{versionedBase + ".so"}
 	case "windows":
-		return []string{versionedBase + ".dll", "libcoakka_logger_core.dll"}
+		return []string{versionedBase + ".dll"}
+	default:
+		panic("unsupported platform")
+	}
+}
+
+func loggerLocalFileNames(goos string) []string {
+	switch normalizeOS(goos) {
+	case "macos":
+		return []string{"libcoakka_logger_core.dylib", "libcoakka_logger_core.so"}
+	case "linux":
+		return []string{"libcoakka_logger_core.so"}
+	case "windows":
+		return []string{"libcoakka_logger_core.dll"}
 	default:
 		panic("unsupported platform")
 	}
@@ -95,7 +108,7 @@ func searchCandidates() []string {
 	if err != nil {
 		cwd = "."
 	}
-	names := loggerResourceFileNames(runtime.GOOS)
+	names := loggerLocalFileNames(runtime.GOOS)
 	roots := []string{
 		filepath.Join(cwd, "lib"),
 		filepath.Join(cwd, "logger", "go", "lib"),
