@@ -1,11 +1,11 @@
 # Consuming The Go Logger Package
 
-The current Go logger artifact is a source package plus embedded native logger
-libraries. The module path is already fixed as
-`github.com/phuong-tran/coakka-logger-go`, but the public Go module repository
-must exist and be tagged before users can install it with `go get`.
+The current Go logger package is a public Go module plus embedded native
+logger libraries:
 
-Until that repository is opened, extract the archive and use a local `replace`.
+```sh
+go get github.com/phuong-tran/coakka-logger-go@v1.2.1
+```
 
 Example consumer `go.mod`:
 
@@ -14,9 +14,7 @@ module my-logger-consumer
 
 go 1.22
 
-require github.com/phuong-tran/coakka-logger-go v0.0.0
-
-replace github.com/phuong-tran/coakka-logger-go => ./coakka-logger-go-1.2.1
+require github.com/phuong-tran/coakka-logger-go v1.2.1
 ```
 
 Example:
@@ -52,10 +50,9 @@ Current packaged platforms:
 - `macos-aarch64`
 - `linux-aarch64`
 - `linux-x86_64`
+- `windows-aarch64`
+- `windows-x86_64`
 
-After the public module repository is opened and tagged, the local `replace`
-line goes away and consumers should use:
+Repository:
 
-```sh
-go get github.com/phuong-tran/coakka-logger-go@v1.2.1
-```
+- `https://github.com/phuong-tran/coakka-logger-go`

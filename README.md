@@ -1,7 +1,27 @@
 # CoAkka Logger Go Connector
 
-This package is the Go connector lane for the standalone CoAkka native logger
-core.
+Go module:
+
+```sh
+go get github.com/phuong-tran/coakka-logger-go@v1.2.1
+```
+
+This package is the Go connector for the standalone CoAkka native logger core.
+It embeds native logger generation `1.2.1+f50756ebff0d` for macOS, Linux, and
+Windows.
+
+## New To CoAkka Logger
+
+CoAkka Logger gives a host application a small language-native logging API
+while the native core owns queueing, pressure behavior, drain semantics, sink
+behavior, and platform library loading.
+
+Use these public repositories to orient first:
+
+- `https://github.com/phuong-tran/coakka-logger-go`
+- `https://github.com/phuong-tran/coakka-runtime-go`
+- `https://github.com/phuong-tran/coakka-publish`
+- `https://github.com/phuong-tran/coakka-samples`
 
 It keeps the Go-facing API small:
 
@@ -51,10 +71,8 @@ Public Go module export:
 bash scripts/export-module-repo.sh /tmp/coakka-logger-go-module
 ```
 
-The exported directory is the root of module
-`github.com/phuong-tran/coakka-logger-go`. After that public repository exists
-and is tagged as `v1.2.1`, consumers can use `go get` without a local
-`replace`.
+The exported directory is the root of public module
+`github.com/phuong-tran/coakka-logger-go`.
 
 The archive embeds native logger libraries under:
 
