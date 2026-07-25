@@ -3,7 +3,7 @@
 //
 // Install the public module with:
 //
-//	go get github.com/phuong-tran/coakka-logger-go@v1.2.3
+//	go get github.com/phuong-tran/coakka-logger-go@v1.2.4
 //
 // CoAkka Logger gives a host application a small language-native logging API
 // while the native core owns queueing, pressure behavior, drain semantics, sink

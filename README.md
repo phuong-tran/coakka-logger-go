@@ -3,12 +3,18 @@
 Go module:
 
 ```sh
-go get github.com/phuong-tran/coakka-logger-go@v1.2.3
+go get github.com/phuong-tran/coakka-logger-go@v1.2.4
 ```
 
 This package is the Go connector for the standalone CoAkka native logger core.
 It embeds native logger generation `1.2.1+f50756ebff0d` for macOS, Linux, and
 Windows.
+
+## License
+
+The Go connector source is Apache-2.0 licensed. The bundled native logger
+libraries under `native/` use the CoAkka Public Artifact Preview terms in
+`NATIVE-LICENSE.md`.
 
 ## New To CoAkka Logger
 
@@ -62,7 +68,7 @@ bash scripts/package-release.sh
 The package archive is written to:
 
 ```text
-logger/go/coakka-logger-go-1.2.3.tar.gz
+logger/go/coakka-logger-go-1.2.4.tar.gz
 ```
 
 Public Go module export:
