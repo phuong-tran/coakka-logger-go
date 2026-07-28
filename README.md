@@ -46,6 +46,11 @@ cd coakka-samples
 bash run.sh logger go basic
 ```
 
+Read the deeper package docs:
+
+- [Why CoAkka Logger matters](docs/coakka-logger.md)
+- [CoAkka ecosystem map](docs/coakka-ecosystem.md)
+
 Try the module without cloning any CoAkka repo:
 
 ```sh
