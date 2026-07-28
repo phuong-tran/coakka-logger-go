@@ -17,6 +17,15 @@ This package is the Go connector for the standalone CoAkka native logger core.
 It embeds native logger generation `1.2.1+f50756ebff0d` for macOS, Linux, and
 Windows.
 
+Public package links:
+
+| Link | Purpose |
+| --- | --- |
+| [pkg.go.dev/coakka-logger-go](https://pkg.go.dev/github.com/phuong-tran/coakka-logger-go@v1.2.5) | Go API reference for the current module version. |
+| [GitHub Release v1.2.5](https://github.com/phuong-tran/coakka-logger-go/releases/tag/v1.2.5) | Source module release with bundled native libraries. |
+| [Logger sample](https://github.com/phuong-tran/coakka-samples/tree/main/logger/go/basic) | Runnable bounded logger sample. |
+| [Compatibility matrix](https://github.com/phuong-tran/coakka-publish/blob/main/docs/compatibility-matrix.md) | Current native generation and package-manager status. |
+
 ## License
 
 The Go connector source is Apache-2.0 licensed. The bundled native logger
