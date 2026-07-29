@@ -117,9 +117,7 @@ library loading.
 From this directory:
 
 ```sh
-bash scripts/stage-logger-natives.sh
 go test ./...
-bash scripts/smoke-packaged-package.sh
 ```
 
 If the local Go toolchain is managed by Homebrew on macOS, this workspace has
@@ -130,29 +128,37 @@ export GOROOT=/opt/homebrew/opt/go/libexec
 export PATH="$GOROOT/bin:$PATH:$HOME/go/bin"
 ```
 
-## Package
+This public module repository is already the exported Go module root. It does
+not contain the internal release-packaging scripts used by the central CoAkka
+release workspace.
 
-```sh
-bash scripts/package-release.sh
-```
-
-The package archive is written to:
-
-```text
-logger/go/coakka-logger-go-1.2.5.tar.gz
-```
-
-Public Go module export:
-
-```sh
-bash scripts/export-module-repo.sh /tmp/coakka-logger-go-module
-```
-
-The exported directory is the root of public module
-`github.com/phuong-tran/coakka-logger-go`.
-
-The archive embeds native logger libraries under:
+The embedded native logger libraries live under:
 
 ```text
 native/<platform>/libcoakka_logger_core-<native-package-version>.<suffix>
 ```
+
+To verify the module as a consumer, create a clean module and install the
+released tag:
+
+```bash
+mkdir coakka-logger-go-consumer
+cd coakka-logger-go-consumer
+go mod init coakka-logger-go-consumer
+go get github.com/phuong-tran/coakka-logger-go@v1.2.5
+```
+
+Run the official sample for an end-to-end package check:
+
+```bash
+git clone https://github.com/phuong-tran/coakka-samples.git
+cd coakka-samples
+bash run.sh logger go basic
+```
+
+Release packaging, native staging, checksum capture, and module export are
+owned by the central release pipeline and the public artifact surface:
+
+- `coakkaCoreNativeDev`
+- `coakka-publish`
+- `coakka-samples`
