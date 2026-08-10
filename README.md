@@ -1,5 +1,9 @@
 # CoAkka Logger Go Connector
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/phuong-tran/coakka-samples/main/docs/assets/brand/coakka-logo.png" alt="CoAkka" width="480">
+</p>
+
 [![CI](https://github.com/phuong-tran/coakka-logger-go/actions/workflows/go-ci.yml/badge.svg)](https://github.com/phuong-tran/coakka-logger-go/actions/workflows/go-ci.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/phuong-tran/coakka-logger-go.svg)](https://pkg.go.dev/github.com/phuong-tran/coakka-logger-go)
 [![Version](https://img.shields.io/badge/version-v1.2.5-blue)](https://github.com/phuong-tran/coakka-logger-go/tree/v1.2.5)
@@ -29,7 +33,7 @@ Public package links:
 ## License
 
 The Go connector source is Apache-2.0 licensed. The bundled native logger
-libraries under `native/` use the CoAkka Public Artifact Preview terms in
+libraries under `native/` use the CoAkka Public Artifact terms in
 `NATIVE-LICENSE.md`.
 
 ## New To CoAkka Logger
