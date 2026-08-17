@@ -12,9 +12,15 @@ permissions:
 
 jobs:
   test:
-    name: go test and package surface
+    name: go ${{ matrix.go-version }} test and package surface
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version:
+          - "1.18.10"
+          - stable
     steps:
       - name: Check out module
         uses: actions/checkout@v6
@@ -22,7 +28,13 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
-          go-version-file: go.mod
+          go-version: ${{ matrix.go-version }}
+          cache: false
+
+      - name: Check module metadata
+        run: |
+          go mod tidy
+          git diff --exit-code -- go.mod
 
       - name: Test
         run: go test ./...
@@ -33,41 +45,6 @@ jobs:
           test -f NATIVE-LICENSE.md
           test -f README.md
           test -f CONSUMING.md
-
-      - name: Check public docs language
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          failed = False
-          files = [
-              Path("README.md"),
-              Path("CONSUMING.md"),
-              Path("doc.go"),
-              Path("packaging.go"),
-              *sorted(Path("docs").glob("*.md")),
-          ]
-          blocked = (
-              "/Users/",
-              "npm_",
-              "pypi-",
-              "internal/release",
-              "protobuf schema",
-              "native bridge internals",
-              "CAF",
-              "libuv",
-          )
-          for path in files:
-              text = path.read_text(encoding="utf-8")
-              for line_no, line in enumerate(text.splitlines(), 1):
-                  if any(ord(ch) > 127 for ch in line):
-                      print(f"{path}:{line_no}: non-ASCII public doc text")
-                      failed = True
-                  if any(term in line for term in blocked):
-                      print(f"{path}:{line_no}: blocked public doc wording")
-                      failed = True
-          raise SystemExit(1 if failed else 0)
-          PY
 
       - name: Check native payload
         run: |

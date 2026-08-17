@@ -4,7 +4,7 @@ The current Go logger package is a public Go module plus embedded native
 logger libraries:
 
 ```sh
-go get github.com/phuong-tran/coakka-logger-go@v1.2.5
+go get github.com/phuong-tran/coakka-logger-go@v1.2.6
 ```
 
 Example consumer `go.mod`:
@@ -12,10 +12,14 @@ Example consumer `go.mod`:
 ```go
 module my-logger-consumer
 
-go 1.22
+go 1.18
 
-require github.com/phuong-tran/coakka-logger-go v1.2.5
+require github.com/phuong-tran/coakka-logger-go v1.2.6
 ```
+
+Go `1.18` is the module compatibility floor. For production builds, use a
+currently supported Go release; CI verifies both Go `1.18.10` compatibility
+and the current stable toolchain.
 
 Example:
 
@@ -52,6 +56,11 @@ Current packaged platforms:
 - `linux-x86_64`
 - `windows-aarch64`
 - `windows-x86_64`
+
+The unchanged Linux native generation requires glibc `2.34` or newer. This is
+a native binary baseline and is independent of the Go toolchain version. Its
+`ReadInfo().GitCommit` value is `unknown`; package generation and source
+provenance remain pinned by the native manifest and verified payload digests.
 
 Repository:
 

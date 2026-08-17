@@ -6,27 +6,32 @@
 
 [![CI](https://github.com/phuong-tran/coakka-logger-go/actions/workflows/go-ci.yml/badge.svg)](https://github.com/phuong-tran/coakka-logger-go/actions/workflows/go-ci.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/phuong-tran/coakka-logger-go.svg)](https://pkg.go.dev/github.com/phuong-tran/coakka-logger-go)
-[![Version](https://img.shields.io/badge/version-v1.2.5-blue)](https://github.com/phuong-tran/coakka-logger-go/tree/v1.2.5)
-[![Release](https://img.shields.io/badge/release-v1.2.5-informational)](https://github.com/phuong-tran/coakka-logger-go/releases/tag/v1.2.5)
+[![Version](https://img.shields.io/badge/version-v1.2.6-blue)](https://github.com/phuong-tran/coakka-logger-go/tree/v1.2.6)
+[![Release](https://img.shields.io/badge/release-v1.2.6-informational)](https://github.com/phuong-tran/coakka-logger-go/releases/tag/v1.2.6)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 [![Funding](https://img.shields.io/badge/funding-Ko--fi-ff5f5f)](https://ko-fi.com/phuongnamtran)
 
 Go module:
 
 ```sh
-go get github.com/phuong-tran/coakka-logger-go@v1.2.5
+go get github.com/phuong-tran/coakka-logger-go@v1.2.6
 ```
 
 This package is the Go connector for the standalone CoAkka native logger core.
 It embeds native logger generation `1.2.1+f50756ebff0d` for macOS, Linux, and
 Windows.
+The module compatibility floor is Go `1.18`; use a currently supported Go
+release for production builds. The unchanged Linux native payload requires
+glibc `2.34` or newer independently of the Go version. That Linux generation
+self-reports `git=unknown`; its source checkpoint remains pinned and verified
+through the native manifest and payload digests.
 
 Public package links:
 
 | Link | Purpose |
 | --- | --- |
-| [pkg.go.dev/coakka-logger-go](https://pkg.go.dev/github.com/phuong-tran/coakka-logger-go@v1.2.5) | Go API reference for the current module version. |
-| [GitHub Release v1.2.5](https://github.com/phuong-tran/coakka-logger-go/releases/tag/v1.2.5) | Source module release with bundled native libraries. |
+| [pkg.go.dev/coakka-logger-go](https://pkg.go.dev/github.com/phuong-tran/coakka-logger-go@v1.2.6) | Go API reference for the current module version. |
+| [GitHub Release v1.2.6](https://github.com/phuong-tran/coakka-logger-go/releases/tag/v1.2.6) | Source module release with bundled native libraries. |
 | [Logger sample](https://github.com/phuong-tran/coakka-samples/tree/main/logger/go/basic) | Runnable bounded logger sample. |
 | [Compatibility matrix](https://github.com/phuong-tran/coakka-publish/blob/main/docs/compatibility-matrix.md) | Current native generation and package-manager status. |
 
@@ -70,7 +75,7 @@ Try the module without cloning any CoAkka repo:
 mkdir coakka-logger-go-first-run
 cd coakka-logger-go-first-run
 go mod init coakka-logger-go-first-run
-go get github.com/phuong-tran/coakka-logger-go@v1.2.5
+go get github.com/phuong-tran/coakka-logger-go@v1.2.6
 ```
 
 ```go
@@ -149,7 +154,7 @@ released tag:
 mkdir coakka-logger-go-consumer
 cd coakka-logger-go-consumer
 go mod init coakka-logger-go-consumer
-go get github.com/phuong-tran/coakka-logger-go@v1.2.5
+go get github.com/phuong-tran/coakka-logger-go@v1.2.6
 ```
 
 Run the official sample for an end-to-end package check:

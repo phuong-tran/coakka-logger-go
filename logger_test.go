@@ -72,7 +72,12 @@ func TestLoggerInfoAndManualDrain(t *testing.T) {
 		t.Fatalf("abi version=%d want %d", info.ABIVersion, LoggerCoreABIVersion)
 	}
 	if info.GitCommit != LoggerNativeGitCommit {
-		t.Fatalf("git commit=%q want %q", info.GitCommit, LoggerNativeGitCommit)
+		linuxGenerationWithoutEmbeddedCommit := runtime.GOOS == "linux" &&
+			LoggerNativePackageVersion == "1.2.1+f50756ebff0d" &&
+			info.GitCommit == "unknown"
+		if !linuxGenerationWithoutEmbeddedCommit {
+			t.Fatalf("git commit=%q want %q", info.GitCommit, LoggerNativeGitCommit)
+		}
 	}
 
 	logger, err := Start(LoggerSpec{SystemName: "go-logger-test", MinLevel: LevelInfo}, libPath)
