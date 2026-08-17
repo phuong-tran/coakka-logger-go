@@ -21,7 +21,7 @@ func TestGoCompatibilityFloorAndCurrentToolchainCI(t *testing.T) {
 		t.Fatalf("read go-ci workflow: %v", err)
 	}
 	text := string(workflow)
-	for _, required := range []string{"\"1.18.10\"", "- stable"} {
+	for _, required := range []string{"\"1.18.10\"", "- stable", "Check public docs language"} {
 		if !strings.Contains(text, required) {
 			t.Fatalf("go-ci workflow is missing toolchain matrix entry %q", required)
 		}
